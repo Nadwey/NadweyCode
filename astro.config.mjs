@@ -26,7 +26,7 @@ export default defineConfig({
             logo: { src: "./src/assets/img/favicon.png", alt: "Starlight Template" },
             favicon: "./favicon.png",
             social: [
-                { icon: "github", label: "GitHub", href: "https://github.com/Nadwey/starlight-template" },
+                { icon: "github", label: "GitHub", href: "https://github.com/Nadwey/NadweyCode" },
             ],
             sidebar: [
                 {
