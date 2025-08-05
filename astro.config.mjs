@@ -23,7 +23,7 @@ export default defineConfig({
                 TwoColumnContent: "./src/components/overrides/TwoColumnContent.astro",
             },
             customCss: ["./src/styles/fonts.css", "./src/styles/globals.css", "./src/styles/docs.css"],
-            logo: { src: "./src/assets/img/favicon.png", alt: "Starlight Template" },
+            logo: { src: "./src/assets/img/favicon.png", alt: "NadweyCode" },
             favicon: "./favicon.png",
             social: [
                 { icon: "github", label: "GitHub", href: "https://github.com/Nadwey/NadweyCode" },
