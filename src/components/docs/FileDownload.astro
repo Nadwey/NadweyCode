@@ -1,0 +1,22 @@
+---
+import { FileArchive } from "@lucide/astro";
+
+const { filename, url } = Astro.props;
+
+interface Props {
+    filename: string;
+    url: string;
+}
+---
+
+<div class="not-content">
+    <a href={url} class="flex w-full items-center justify-start gap-2 rounded-xl border border-zinc-900 p-4 text-zinc-800 dark:text-zinc-200 no-underline">
+        <FileArchive class="h-16 w-16" stroke-width={0.9} />
+        <div class="flex flex-col justify-center">
+            <div class="text-lg font-semibold">
+                {filename}
+            </div>
+            <div class="text-sm text-zinc-400">Kliknij, aby pobrać.</div>
+        </div>
+    </a>
+</div>

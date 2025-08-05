@@ -1,0 +1,120 @@
+---
+title: "25w32a - Object Text Component"
+---
+
+import { FileTree } from '@astrojs/starlight/components';
+import FileDownload from "@/components/docs/FileDownload.astro";
+import Aside from "@/components/docs/Aside.astro";
+
+https://www.minecraft.net/en-us/article/minecraft-snapshot-25w32a
+
+<Aside title="To nie jest poradnik" variant="warning">
+  To nie jest poradnik, a raczej coś w stylu ciekawostki wraz z opisem i przykładami użycia.
+</Aside>
+
+Oprócz miedzianych rzeczy, dodany został nowy "Text Component", `object`.  
+Pozwala na wyświetlanie dowolnej grafiki z [Atlasu Tekstur](https://minecraft.wiki/w/Texture_atlas).
+
+Po ludzku, w tekście (na chacie, w lorze itemów, czy nawet na tabliczkach) można wyświetlać tekstury z Minecrafta i resource packów.
+
+## Przykłady
+
+### Chat
+
+```mcfunction wrap
+/tellraw @p ["<Nadwey> Kocham banany ",{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/heart"}]
+```
+
+![](src/assets/docs/snapshots/25w32a/chat.png)
+
+### Title
+
+```mcfunction wrap
+/title @p title [{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/happy"},{text:" Witaj na NadweyCraft! ",color:"#2686ff",bold:true},{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/happy"}]
+```
+
+![](src/assets/docs/snapshots/25w32a/title.png)
+
+### Lore
+
+```mcfunction wrap
+/give @p diamond[lore=["Jakość diamentu została sprawdzona,",["prez rzeczoznawcę Ryszarda",{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/happy",color:"white",italic:false}]]]
+```
+
+![](src/assets/docs/snapshots/25w32a/lore.png)
+
+## Detale (technicznie)
+
+### Komponent `object`
+
+Jest podobny jak każdy inny [komponent tekstu](https://minecraft.wiki/w/Text_component_format), ale zamiast np. `text` i `color`,  
+Używamy `atlas` i `sprite`.
+
+- `atlas` atlasu, z którego chcemy pobrać grafikę, np. `minecraft:blocks`.
+- `sprite` grafika, którą chcemy wyświetlić (zdefiniowana w atlasie).
+
+Przykład na emotce serca z dołączonego resource packu:
+
+```json
+{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/heart"}
+```
+
+### Atlasy
+
+Resource packi nie mogą tworzyć własnych atlasów tekstur, dlatego musimy nadpisać istniejący.  
+W dołączonym resource packu, nadpisany jest atlas `minecraft:blocks`.
+
+Nie jest to idealne rozwiązanie, inne resource packi mogą mieć problemy z kompatybilnością, a nowe wersje mogą wprowadzać zmiany w atlasach.  
+Ale na czas pisania tego dokumentu, nie ma za bardzo innych opcji.
+
+Emotki możemy dodawać do atlasu w poniższy sposób, [zresztą opisany na minecraft.wiki](https://minecraft.wiki/w/Atlas):
+
+#### Atlas
+
+```jsonc title="/assets/minecraft/atlases/blocks.json"
+{
+  "sources": [
+    // nasze emotki
+    {
+      "type": "minecraft:single",
+      "resource": "custom_emoji:emoji/happy",
+      "sprite": "custom_emoji:emoji/happy",
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "custom_emoji:emoji/heart",
+      "sprite": "custom_emoji:emoji/heart",
+    },
+
+    // obiekty minecrafta (reszta pliku jest taka sama jak atlas `blocks.json` w plikach minecrafta)
+    {
+      "type": "minecraft:directory",
+      "prefix": "block/",
+      "source": "block",
+    },
+    // ...
+  ],
+}
+```
+
+<FileTree>
+
+- pack.mcmeta
+- assets
+  - custom_emoji
+    - textures # Tekstury muszą być w formacie `.png` i znajdować się w katalogu `textures`
+      - emoji
+        - happy.png
+        - heart.png
+  - minecraft # zwróć uwagę, że to jest katalog minecrafta
+    - atlases
+      - blocks.json
+
+</FileTree>
+
+## Pliki
+
+<FileDownload
+  filename="custom_emoji.zip"
+  url="/assets/docs/snapshots/25w32a/custom_emoji.zip"
+/>
