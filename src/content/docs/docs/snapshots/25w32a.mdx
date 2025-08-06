@@ -43,6 +43,14 @@ Po ludzku, w tekście (na chacie, w lorze itemów, czy nawet na tabliczkach) mo�
 
 ![](src/assets/docs/snapshots/25w32a/lore.png)
 
+## Tabliczka
+
+```mcfunction wrap
+/setblock ~ ~1 ~ oak_sign{front_text:{messages:[[{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/heart",color:white},{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/revolving_hearts",color:white},{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/revolving_hearts",color:white},"SHGBBHS",{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/sob",color:white},{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/sob",color:white}],"",{atlas:"minecraft:blocks",sprite:"custom_emoji:emoji/absolute_cinema",color:white},""]}} replace
+```
+
+![](src/assets/docs/snapshots/25w32a/sign.png)
+
 ## Detale (technicznie)
 
 ### Komponent `object`
@@ -74,14 +82,34 @@ Emotki możemy dodawać do atlasu w poniższy sposób, [zresztą opisany na mine
   "sources": [
     // nasze emotki
     {
-      "type": "minecraft:single",
-      "resource": "custom_emoji:emoji/happy",
-      "sprite": "custom_emoji:emoji/happy",
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/happy",
+        "sprite": "custom_emoji:emoji/happy"
     },
     {
-      "type": "minecraft:single",
-      "resource": "custom_emoji:emoji/heart",
-      "sprite": "custom_emoji:emoji/heart",
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/heart",
+        "sprite": "custom_emoji:emoji/heart"
+    },
+    {
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/revolving_hearts",
+        "sprite": "custom_emoji:emoji/revolving_hearts"
+    },
+    {
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/sob",
+        "sprite": "custom_emoji:emoji/sob"
+    },
+    {
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/flushed",
+        "sprite": "custom_emoji:emoji/flushed"
+    },
+    {
+        "type": "minecraft:single",
+        "resource": "custom_emoji:emoji/absolute_cinema",
+        "sprite": "custom_emoji:emoji/absolute_cinema"
     },
 
     // obiekty minecrafta (reszta pliku jest taka sama jak atlas `blocks.json` w plikach minecrafta)
@@ -104,6 +132,10 @@ Emotki możemy dodawać do atlasu w poniższy sposób, [zresztą opisany na mine
       - emoji
         - happy.png
         - heart.png
+        - revolving_hearts.png
+        - sob.png
+        - flushed.png
+        - absolute_cinema.png
   - minecraft # `minecraft`, bo musimy nadpisać istniejący atlas
     - atlases
       - blocks.json
